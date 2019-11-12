@@ -1,6 +1,6 @@
 La vie que l’on vit
 
-*Un beat lourd mais très simple, comme le battement d'un coeur mais en éléctro*
+**Un double beat lourd, suivi d'une cymbale ouverte, très simple, comme le battement d'un coeur mais en éléctro**
 
 La vie, vivace, vile et vorace  
 La vie, voleuse, seule et faucheuse  
