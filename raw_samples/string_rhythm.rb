@@ -1,5 +1,7 @@
 # Howto use a string to create rhythm
 
+# Thanks to this thread: https://in-thread.sonic-pi.net/t/steve-reichs-clapping-music/2940
+
 define :to_ring do |a|
   return a.chars.map{|e| e=='x' ? true : false}.ring
 end
