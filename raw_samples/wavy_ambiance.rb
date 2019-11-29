@@ -1,5 +1,8 @@
 # Ambiance 1
 
+# This one is a bit agressive
+# TODO: Smooth this sounds
+
 live_loop :wavy do
   with_fx :reverb, room: 0.8 do
     with_fx:echo,

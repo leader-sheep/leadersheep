@@ -1,18 +1,41 @@
-# Tick and Look
+##| Tick and Look
 
-coff = (ring 70, 70, 130, 130, 130, 90, 90, 70)
-e36 = (chord :e3, '6').shuffle
-a = (spread 9, 16)
-live_loop :test, sync: :drum do
-  tick
-  puts a.look
-  with_fx :slicer, phase: 0.125, wave: a.look do
-    synth :blade, note: e36.look, cutoff: coff.look
+rhythm = (ring 0.5, 0.5, 0.5, 0.25, 0.25)
+chords_36 = (ring
+             (chord :b3, '6*9').shuffle,
+             (chord :e3, '6*9').shuffle,
+             (chord :a3, '6*9').shuffle,
+             (chord :e3, '6*9').shuffle
+             )
+chords_36_idx = 0
+current_chord = chords_36[chords_36_idx]
+chords_36_idx = chords_36_idx + 1
+live_loop :test, sync: :drum, delay: 5 do tick
+  if look % 20 == 0 then
+    current_chord = chords_36[chords_36_idx]
+    chords_36_idx = chords_36_idx + 1
   end
-  sleep 0.5
+  
+  with_fx :slicer, phase: bt(0.125) do
+    with_fx :reverb, room: 0.5 do
+      
+      synth :blade,
+        note: current_chord.look,
+        cutoff: 75,
+        release: 1.5
+    end
+  end
+  
+  sleep bt(rhythm.look)
 end
 
-live_loop :drum do
-  sample :loop_breakbeat, onset: 3
-  sleep 0.5
+hit_it = (spread 7, 8)
+live_loop :drum, sync: :go do tick
+  puts look
+  
+  if hit_it.look then
+    sample :loop_breakbeat, onset: 3, rate: 0.5, amp: 2
+  end
+  
+  sleep bt(0.5)
 end
