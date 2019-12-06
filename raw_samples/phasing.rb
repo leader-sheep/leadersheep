@@ -26,7 +26,7 @@ live_loop :test, sync: :drum, delay: 5 do tick
     end
   end
   
-  sleep bt(rhythm.look)
+  sleep rhythm.look
 end
 
 hit_it = (spread 7, 8)
@@ -37,5 +37,9 @@ live_loop :drum, sync: :go do tick
     sample :loop_breakbeat, onset: 3, rate: 0.5, amp: 2
   end
   
-  sleep bt(0.5)
+  sleep 0.5
 end
+
+# Init the sound
+sleep 0.2
+cue :go
